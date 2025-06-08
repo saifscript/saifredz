@@ -12,9 +12,9 @@ local redzlib = {
 	Themes = {
 		Darker = {
 			["Color Hub 1"] = ColorSequence.new({
-				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(25, 25, 25)),
-				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(32.5, 32.5, 32.5)),
-				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(25, 25, 25))
+				ColorSequenceKeypoint.new(0.00, Color3.fromRGB(0, 255, 0)),
+				ColorSequenceKeypoint.new(0.50, Color3.fromRGB(0, 255, 0)),
+				ColorSequenceKeypoint.new(1.00, Color3.fromRGB(0, 255, 0))
 			}),
 			["Color Hub 2"] = Color3.fromRGB(30, 30, 30),
 			["Color Stroke"] = Color3.fromRGB(40, 40, 40),
@@ -2702,45 +2702,3 @@ function redzlib:MakeWindow(Configs)
 end
 
 return redzlib
-
--- تم إضافة ثيم فاخر
-
-Themes["Luxury"] = {
-    ["Color Hub 1"] = ColorSequence.new({
-        ColorSequenceKeypoint.new(0.00, Color3.fromRGB(30, 20, 50)),
-        ColorSequenceKeypoint.new(0.50, Color3.fromRGB(60, 45, 80)),
-        ColorSequenceKeypoint.new(1.00, Color3.fromRGB(30, 20, 50))
-    }),
-    ["Color Hub 2"] = Color3.fromRGB(40, 30, 60),
-    ["Color Stroke"] = Color3.fromRGB(70, 50, 100),
-    ["Color Theme"] = Color3.fromRGB(255, 215, 0),
-    ["Color Text"] = Color3.fromRGB(250, 250, 250),
-    ["Color Dark Text"] = Color3.fromRGB(190, 190, 190)
-}
-
-
--- تم إضافة إنميشن
-
-local TweenService = game:GetService("TweenService")
-local UserInputService = game:GetService("UserInputService")
-
-local function animateTabsVisibility(visible)
-    for _, tab in pairs(window.Tabs) do
-        if tab.Main then
-            local tween = TweenService:Create(tab.Main, TweenInfo.new(0.25), {Size = visible and UDim2.new(1, 0, 0, 40) or UDim2.new(1, 0, 0, 2)})
-            tween:Play()
-        end
-    end
-end
-
-UserInputService.InputBegan:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        animateTabsVisibility(false)
-    end
-end)
-
-UserInputService.InputEnded:Connect(function(input)
-    if input.UserInputType == Enum.UserInputType.MouseButton1 then
-        animateTabsVisibility(true)
-    end
-end)
